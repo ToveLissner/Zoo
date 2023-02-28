@@ -1,0 +1,35 @@
+.animals {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 250px;
+    align-items: center;
+    background-color: white;
+    gap: 20px;
+    justify-content: center;
+    
+        h3 {
+            text-align: center;
+            margin: 0;
+        }
+
+        .imageContainer {
+            display: flex;
+            justify-content: center;
+            width: 200px;
+            height: 125px;
+
+            img {
+                max-height: 125px;
+            }
+        }
+
+        button {
+            margin: 5px;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+    
+}
