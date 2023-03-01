@@ -23,12 +23,12 @@ export function Animals() {
 
     let animalsHtml = animals.map((animal) => {
         return (
-                <div className="animals" key={animal.id}>
+                <div className="animals" key={animal.id} onClick={()=>handleClick(animal.id)} >
                     <h3>{animal.name}</h3>
                     <div className="imageContainer">
                         <img src={animal.imageUrl} alt={"Bild saknas"} />
                     </div>
-                    <button type="button" onClick={()=>handleClick(animal.id)}>Läs mer</button>
+                    <button type="button">Läs mer</button>
                 </div>
         );
     });

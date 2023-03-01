@@ -1,6 +1,4 @@
 export interface IAnimalDetailed {
-  animal: any;
-  error(error: any): unknown;
   id: number;
   name: string;
   yearOfBirth: number;
