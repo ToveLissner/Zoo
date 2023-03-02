@@ -1,8 +1,8 @@
 .animals {
     display: flex;
     flex-direction: column;
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
     align-items: center;
     background-color: white;
     gap: 20px;
@@ -26,6 +26,15 @@
 
         .imageContainer:hover {
             cursor: pointer;
+        }
+
+        .descriptionContainer {
+            height: 100px;
+            text-align: center;
+    
+            p {
+                
+            }
         }
 
         button {

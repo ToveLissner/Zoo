@@ -5,7 +5,6 @@ import { Header } from './components/header/Header';
 import { Animals } from './components/animals/Animals';
 import { Outlet } from 'react-router-dom';
 import { IAnimal } from './models/IAnimal';
-import { IAnimalDetailed } from './models/IAnimalDetailed';
 
 function App() {
   return (

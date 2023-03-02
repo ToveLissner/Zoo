@@ -1,6 +1,6 @@
-import { IAnimalDetailed } from "../models/IAnimalDetailed";
+import { IAnimal } from "../models/IAnimal";
 
-export const CalculateTime = (animal: IAnimalDetailed) => {
+export const CalculateTime = (animal: IAnimal) => {
     const compareDates = new Date().getTime() - new Date(animal.lastFed).getTime();
     return new Date(compareDates).getSeconds();
 }  

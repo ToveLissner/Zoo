@@ -9,3 +9,11 @@ export const Router=createBrowserRouter([
         {path: "/animal/:id", element:<Animal />}
     ]
 }]);
+
+            // const getData = async () => {
+        //     if (id) {
+        //         let response = await getAnimalById(+id);
+
+        //         if (response) {
+        //             setAnimal(response);
+        //         } 

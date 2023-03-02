@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { IAnimal } from "../../models/IAnimal"
 import { getAnimals } from "../../services/animalService";
+import { getList, saveList } from "../LocalStorage";
 import "./animals.scss";
 
 export function Animals() {
@@ -13,9 +14,15 @@ export function Animals() {
             let animalsFromApi: IAnimal[] = await getAnimals();
             setAnimals(animalsFromApi);
         };
+
         if (animals.length>0) return;
         getData();
     });
+
+    if (getList().length <= 0) {
+        getList();
+        saveList(animals);
+    }
 
     const handleClick =(id:number)=>{
         navigate(`/animal/${id}`);
@@ -27,6 +34,9 @@ export function Animals() {
                     <h3>{animal.name}</h3>
                     <div className="imageContainer">
                         <img src={animal.imageUrl} alt={"Bild saknas"} />
+                    </div>
+                    <div className="descriptionContainer">
+                    <p>{animal.shortDescription}</p>
                     </div>
                     <button type="button">Läs mer</button>
                 </div>
