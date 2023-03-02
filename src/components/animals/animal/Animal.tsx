@@ -22,43 +22,42 @@ export function Animal() {
         {id: 0, name: "",latinName:"", yearOfBirth:0, shortDescription:"",longDescription:"",imageUrl:"",medicine:"",isFed: false, lastFed:""}
     );
 
-    const [error, setError] = useState("");
-    // const { feedAnimal } = useOutletContext<MyContext>();
+    // const [error, setError] = useState("");
 
     const param = useParams() as { id:string }
 
     useEffect (() => {
+
         let animalsFromLS: IAnimalNew[]=getList()
 
         animalsFromLS.map((animal) => {
             if (+param.id === animal.id) {
-                // animal = {...animal}
-                // console.log(param.id);
-                // console.log(animalsFromLS);
                 console.log(animal);
-            }
+                
+            };
 
-        })
+        });
+
+        setAnimal(animal);
 
         saveList(animalsFromLS)},[param.id])
 
         const feedAnimal = () => {
-            getList();
+            getList()
             animal.isFed=true
     
-            console.log(getList);
             console.log(animal);
     
             // saveList(animal);
         }
 
         return (
-            <>
-                {error !== "" ? (
-                <>
-                    <h2>{error}</h2>
-                </>
-                ) : (
+            // <>
+            //     {error !== "" ? (
+            //     <>
+            //         <h2>{error}</h2>
+            //     </>
+            //     ) : (
                 <>
                     <div className="animal">
                         <h1>{animal?.name}</h1>
@@ -75,7 +74,7 @@ export function Animal() {
                         
                     </div>
                 </>
-                )}
-            </>
+                // )}
+            // </>
             );
 }
