@@ -1,55 +1,57 @@
 import { useEffect, useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 import { IAnimal } from "../../../models/IAnimal";
+import { IAnimalNew } from "../../../models/IAnimalNew";
 import { getList, saveList } from "../../LocalStorage";
 import "./animal.scss";
 
-interface IAnimalNew {
-    id: number,
-    name: string,
-    latinName: string,
-    yearOfBirth: number;
-    shortDescription: string,
-    longDescription: string,
-    imageUrl: string,
-    medicine: string,
-    isFed: boolean,
-    lastFed: string,
-}
-
 export function Animal() {
     const [animal, setAnimal]=useState<IAnimalNew>(
-        {id: 0, name: "",latinName:"", yearOfBirth:0, shortDescription:"",longDescription:"",imageUrl:"",medicine:"",isFed: false, lastFed:""}
+        {id: 0, name: "",latinName:"", 
+        yearOfBirth:0, shortDescription:"",longDescription:"",imageUrl:"",medicine:"",isFed: false, lastFed:""}
     );
 
     // const [error, setError] = useState("");
 
     const param = useParams() as { id:string }
 
+    const feedAnimal = () => {
+        animal.isFed=true;
+        let feedingTime = new Date();
+        animal.lastFed=feedingTime.toLocaleString();
+        setAnimal({...animal});
+
+        console.log(animal);
+    }
+
     useEffect (() => {
+        let currentDate = new Date().getTime;
+        setAnimal({...animal})
 
         let animalsFromLS: IAnimalNew[]=getList()
 
         animalsFromLS.map((animal) => {
+        if(+currentDate - new Date(animal.lastFed).getTime()>1080000){
+        animal.isFed=false;
+        }
+
             if (+param.id === animal.id) {
+                animal={...animal};
                 console.log(animal);
-                
+
+                const animalsInStorage = localStorage.getItem("animals");
+                if (animalsInStorage) {  
+                    let animalsList = JSON.parse(animalsInStorage);
+                    console.log(animalsList);
+                }   
             };
 
+            return (
+                saveList(animalsFromLS)
+            )
         });
 
-        setAnimal(animal);
-
-        saveList(animalsFromLS)},[param.id])
-
-        const feedAnimal = () => {
-            getList()
-            animal.isFed=true
-    
-            console.log(animal);
-    
-            // saveList(animal);
-        }
+        saveList(animalsFromLS)},[param.id]);
 
         return (
             // <>
