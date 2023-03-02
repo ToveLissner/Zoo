@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useOutletContext, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { IAnimal } from "../../../models/IAnimal";
 import { IAnimalNew } from "../../../models/IAnimalNew";
 import { getList, saveList } from "../../LocalStorage";
@@ -24,34 +24,36 @@ export function Animal() {
         console.log(animal);
     }
 
+    const animalsInStorage = localStorage.getItem("animals")
+    if (animalsInStorage) {
+        let animalsList = JSON.parse(animalsInStorage)
+    };
+
     useEffect (() => {
         let currentDate = new Date().getTime;
-        setAnimal({...animal})
+        setAnimal({...animal});
 
-        let animalsFromLS: IAnimalNew[]=getList()
+        let animalsFromLS: IAnimalNew[]=getList();
 
         animalsFromLS.map((animal) => {
-        if(+currentDate - new Date(animal.lastFed).getTime()>1080000){
-        animal.isFed=false;
-        }
-
-            if (+param.id === animal.id) {
-                animal={...animal};
-                console.log(animal);
-
-                const animalsInStorage = localStorage.getItem("animals");
-                if (animalsInStorage) {  
-                    let animalsList = JSON.parse(animalsInStorage);
-                    console.log(animalsList);
-                }   
+            if (+currentDate - new Date(animal.lastFed).getTime() > 1080000) {
+                animal.isFed = false
             };
 
-            return (
-                saveList(animalsFromLS)
-            )
+            if (+param.id === animal.id) {
+                animal = { ...animal }
+                console.log(animal)
+            };
+
+            saveList(animalsFromLS);
+
         });
 
-        saveList(animalsFromLS)},[param.id]);
+        setAnimal(animal);
+
+},[param.id]);
+
+
 
         return (
             // <>
