@@ -11,7 +11,7 @@ export function Animal() {
         yearOfBirth:0, shortDescription:"",longDescription:"",imageUrl:"",medicine:"",isFed: false, lastFed:""}
     );
 
-    // const [error, setError] = useState("");
+    const [error, setError] = useState("");
 
     const param = useParams() as { id:string }
 
@@ -24,28 +24,32 @@ export function Animal() {
         console.log(animal);
     }
 
-    const animalsInStorage = localStorage.getItem("animals")
-    if (animalsInStorage) {
-        let animalsList = JSON.parse(animalsInStorage)
-    };
-
     useEffect (() => {
         let currentDate = new Date().getTime;
         setAnimal({...animal});
 
         let animalsFromLS: IAnimalNew[]=getList();
 
+        const animalsInStorage = localStorage.getItem("animals")
+        if (animalsInStorage) {
+            let animalsList = JSON.parse(animalsInStorage)
+            console.log(animalsList);
+        }
+
         animalsFromLS.map((animal) => {
-            if (+currentDate - new Date(animal.lastFed).getTime() > 1080000) {
+            if (+currentDate - new Date(animal.lastFed).getTime() > 10800) {
                 animal.isFed = false
             };
 
             if (+param.id === animal.id) {
                 animal = { ...animal }
+                setAnimal({...animal});
                 console.log(animal)
             };
 
-            saveList(animalsFromLS);
+            // console.log(animal);
+
+            // saveList(animalsFromLS);
 
         });
 
@@ -53,15 +57,13 @@ export function Animal() {
 
 },[param.id]);
 
-
-
         return (
-            // <>
-            //     {error !== "" ? (
-            //     <>
-            //         <h2>{error}</h2>
-            //     </>
-            //     ) : (
+            <>
+                {error !== "" ? (
+                <>
+                    <h2>{error}</h2>
+                </>
+                ) : (
                 <>
                     <div className="animal">
                         <h1>{animal?.name}</h1>
@@ -78,7 +80,7 @@ export function Animal() {
                         
                     </div>
                 </>
-                // )}
-            // </>
+                )}
+            </>
             );
 }
