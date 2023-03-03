@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IAnimal } from "../../models/IAnimal"
 import { getAnimals } from "../../services/animalService";
 import { getList, saveList } from "../LocalStorage";
