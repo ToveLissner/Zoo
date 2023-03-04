@@ -36,10 +36,8 @@ export function Animal() {
        setAnimal(animalToFeed);
     
        for (let i=0; i<animalListFromLS.length; i++){  
-
         if (animalListFromLS[i].id===animalToFeed.id){
-            animalListFromLS[i]=animalToFeed;
-        }
+            animalListFromLS[i]=animalToFeed;}
         }
         saveList(animalListFromLS);
     } 

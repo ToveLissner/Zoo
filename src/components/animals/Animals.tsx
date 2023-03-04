@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IAnimal } from "../../models/IAnimal"
 import { getAnimals } from "../../services/animalService";
 import { getList, saveList } from "../LocalStorage";
@@ -7,7 +7,6 @@ import "./animals.scss";
 
 export function Animals() {
     const [animals, setAnimals] = useState<IAnimal[]>([]);
-    // const navigate = useNavigate();
 
     useEffect(() => {
         const getData = async () => {
@@ -24,13 +23,18 @@ export function Animals() {
         saveList(animals);
     }
 
-    // const handleClick =(id:number)=>{
-    //     navigate(`/animal/${id}`);
-    // };
+    let now = new Date().getTime();
 
-    let animalsHtml = animals.map((animal) => {
+    let animalListFromLS:IAnimal[]=getList();
+
+    let animalsHtml = animalListFromLS.map((animal) => { 
+        let notisFeedAnimal = `${animal.name} är mätt`;
+
+        if(+now - new Date (animal.lastFed).getTime() > 14400000) {
+            notisFeedAnimal=`${animal.name} behöver matas`;
+        }
+
         return (
-                // <div className="animals" key={animal.id} onClick={()=>handleClick(animal.id)} >
                 <div className="animals">
                     <h3>{animal.name}</h3>
                     <div className="imageContainer">
@@ -43,6 +47,7 @@ export function Animals() {
                         <Link to={`/animal/${animal.id}`}
                         key={animal.id}>Läs mer</Link> 
                     </button>
+                    <div className="notis"> {notisFeedAnimal}</div>
                 </div>
         );
     });
