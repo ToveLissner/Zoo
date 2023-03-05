@@ -24,15 +24,17 @@ export function Animals() {
     }
 
     let now = new Date().getTime();
+    
 
     let animalListFromLS:IAnimal[]=getList();
+    
 
     let animalsHtml = animalListFromLS.map((animal) => { 
         // let notisFeedAnimal = `${animal.name} är mätt`;
         let notisFeedAnimal = "";
 
         if(+now - new Date (animal.lastFed).getTime() > 14400000) {
-            notisFeedAnimal=`${animal.name} behöver matas`;
+            notisFeedAnimal=`${animal.name} behöver matas!`;
         }
 
         return (
@@ -48,9 +50,9 @@ export function Animals() {
                         <Link to={`/animal/${animal.id}`}
                         key={animal.id}>Läs mer</Link> 
                     </button>
-                    <div className="notisContainer">                    
+                    <div className="notisContainer">              
                         <div className="notis"> {notisFeedAnimal}</div>
-                    </div>
+                    </div> 
                 </div>
         );
     });

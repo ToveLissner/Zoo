@@ -52,6 +52,13 @@ $desktop_breakpoint: 1200px;
 
         button {
             margin: 5px;
+            height: 40px;
+            width: 160px;
+            border-radius: 5%;
+
+            @include desktop {
+
+            }
         }
     
         button:hover {

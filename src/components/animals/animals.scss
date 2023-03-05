@@ -1,8 +1,8 @@
 .animals {
     display: flex;
     flex-direction: column;
-    width: 350px;
-    height: 350px;
+    width: 340px;
+    height: 340px;
     align-items: center;
     background-color: rgb(240, 240, 240);
     // gap: 20px;
@@ -17,21 +17,24 @@
             display: flex;
             justify-content: center;
             width: 200px;
-            height: 125px;
+            height: 110px;
             margin-top: 10px;
 
             img {
-                max-height: 125px;
+                max-height: 110px;
             }
         }
 
-        .imageContainer:hover {
-            cursor: pointer;
-        }
+        // .imageContainer:hover {
+        //     cursor: pointer;
+        // }
 
         .descriptionContainer {
             height: 100px;
             text-align: center;
+            width: 80%;
+            display: flex;
+            align-items: center;
     
             p {
                 
@@ -41,6 +44,9 @@
         button {
             margin: 5px;
             background-color: white;
+            height: 30px;
+            width: 100px;
+            border-radius: 5%;
 
             a {
                 text-decoration: none;
@@ -57,11 +63,14 @@
         }
 
         .notisContainer{
-            height: 20px;
+            height: 30px;
 
             .notis {
-                height: 20px;
-                background-color: yellow;            }
+                color: red;
+                display: flex;
+                align-items: center;    
+                justify-content: center;   
+            }
         }
     
 }
