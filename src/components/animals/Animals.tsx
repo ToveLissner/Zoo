@@ -28,7 +28,8 @@ export function Animals() {
     let animalListFromLS:IAnimal[]=getList();
 
     let animalsHtml = animalListFromLS.map((animal) => { 
-        let notisFeedAnimal = `${animal.name} är mätt`;
+        // let notisFeedAnimal = `${animal.name} är mätt`;
+        let notisFeedAnimal = "";
 
         if(+now - new Date (animal.lastFed).getTime() > 14400000) {
             notisFeedAnimal=`${animal.name} behöver matas`;
@@ -47,7 +48,9 @@ export function Animals() {
                         <Link to={`/animal/${animal.id}`}
                         key={animal.id}>Läs mer</Link> 
                     </button>
-                    <div className="notis"> {notisFeedAnimal}</div>
+                    <div className="notisContainer">                    
+                        <div className="notis"> {notisFeedAnimal}</div>
+                    </div>
                 </div>
         );
     });

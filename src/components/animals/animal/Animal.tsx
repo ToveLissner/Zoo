@@ -45,36 +45,52 @@ export function Animal() {
     return (
         <>
                      <div className="animal">
-                         <h1>{animal.name}</h1>
+                        <div className="cont1">
                          <div className="imageContainer">
                              <img src={animal.imageUrl} alt={"Bild saknas"} />{" "}
                          </div>
-                         <div className="descriptionContainer">
-                             <p>{animal.longDescription}</p>
-                         </div>
-                        <p>
+                         <p>
                             Senast matad: {animal.lastFed} 
                         </p>
                         {animal.isFed ? (
                         <button type="button" className="buttonFed" disabled>
-                            {animal.name} är inte hungrig
+                            {animal.name} är inte hungrig!
                         </button>
                         ) : (
                         <button
                         type="button"
-                        className="buttonFeed"
+                        className="buttonHungry"
                         onClick={() => {
                             feedAnimal(animal)
                           }}
                         >
                         Mata {animal.name} 
                         </button>
-        )}
-
+        )}</div>
+                    <div className="cont2">
+                         <h1>{animal.name}</h1>
+                         <div className="descriptionContainer">
+                             <p>{animal.longDescription}</p>
+                         </div>
+                         <div className="factContainer">
+                            <div className="facts">
+                                <h4>Latinskt namn:</h4>
+                                <span>{animal.latinName}</span>
+                            </div>
+                            <div className="facts"> 
+                                <h4>Mediciner:</h4>
+                                <span>{animal.medicine}</span>
+                            </div>
+                            <div className="facts"> 
+                                <h4>Födelseår:</h4>
+                                <span>{animal.yearOfBirth}</span>
+                            </div>
+                         </div>
+                         </div>
                      </div>
         </>
     );
 
 }
 
-// 🥕🌽🍓
+// 🥬🥒🥦🍅🥕🌽🍓
