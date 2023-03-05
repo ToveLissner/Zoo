@@ -48,7 +48,7 @@ export function Animals() {
                     </div>
                     <button type="button">
                         <Link to={`/animal/${animal.id}`}
-                        key={animal.id}>Läs mer</Link> 
+                        key={animal.id}>Titta in hos {animal.name}...</Link> 
                     </button>
                     <div className="notisContainer">              
                         <div className="notis"> {notisFeedAnimal}</div>

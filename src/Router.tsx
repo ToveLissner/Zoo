@@ -5,15 +5,8 @@ import { Animals } from "./components/animals/Animals";
 
 export const Router=createBrowserRouter([
     {path:"", element:<App/>, children:[
-        {path: "/animals", element: <Animals/>, index: true},
+        {path: "/", element: <Animals/>, index: true},
+        {path: "/animals", element: <Animals/>},
         {path: "/animal/:id", element:<Animal />}
     ]
 }]);
-
-            // const getData = async () => {
-        //     if (id) {
-        //         let response = await getAnimalById(+id);
-
-        //         if (response) {
-        //             setAnimal(response);
-        //         } 
