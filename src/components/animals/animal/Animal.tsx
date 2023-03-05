@@ -66,7 +66,7 @@ export function Animal() {
                         >
                         Mata {animal.name} 
                         </button>
-        )}</div>
+                        )}</div>
                     <div className="cont2">
                          <h1>{animal.name}</h1>
                          <div className="descriptionContainer">
